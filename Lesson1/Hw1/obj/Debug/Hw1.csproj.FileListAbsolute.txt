@@ -1,0 +1,7 @@
+D:\Архитектура и шаблоны C#\Lesson1\Hw1\bin\Debug\Hw1.exe.config
+D:\Архитектура и шаблоны C#\Lesson1\Hw1\bin\Debug\Hw1.exe
+D:\Архитектура и шаблоны C#\Lesson1\Hw1\bin\Debug\Hw1.pdb
+D:\Архитектура и шаблоны C#\Lesson1\Hw1\obj\Debug\Hw1.csproj.AssemblyReference.cache
+D:\Архитектура и шаблоны C#\Lesson1\Hw1\obj\Debug\Hw1.csproj.CoreCompileInputs.cache
+D:\Архитектура и шаблоны C#\Lesson1\Hw1\obj\Debug\Hw1.exe
+D:\Архитектура и шаблоны C#\Lesson1\Hw1\obj\Debug\Hw1.pdb
