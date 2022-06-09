@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Damage : Health
 {
-    public Damage (float currrentHp, float maxHp) : base(currrentHp, maxHp)
+    public Damage (float currentHp, float maxHp) : base(currentHp, maxHp)
     {
 
     }

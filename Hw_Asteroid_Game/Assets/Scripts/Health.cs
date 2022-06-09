@@ -1,12 +1,12 @@
 
 public class Health
 {
-    public float currrentHp { get; protected set; }
+    public float currentHp { get; protected set; }
     public float maxHp { get; }
 
-    public Health (float currrentHp, float maxHp)
+    public Health (float currentHp, float maxHp)
     {
-        this.currrentHp = currrentHp;
+        this.currentHp = currentHp;
         this.maxHp = maxHp;
     }
 

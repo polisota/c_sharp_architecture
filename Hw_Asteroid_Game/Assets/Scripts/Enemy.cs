@@ -5,7 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour//, IEnemyFactory
 {
     protected Damage damage;
-    private AsteroidType asteroidType;
+   
+    protected float speed;
 
     /*
      void Start()
@@ -15,7 +16,7 @@ public class Enemy : MonoBehaviour//, IEnemyFactory
     
      */
 
-    public static void CreateAsteroidEnemy(Damage enemyDamage, Vector3 enemyPosition, Quaternion enemyRotation, AsteroidType asteroidType)
+    public static Asteroid CreateAsteroidEnemy(Vector3 enemyPosition, Quaternion enemyRotation, AsteroidType asteroidType, float speed)
     {
         Asteroid asteroid = null;
 
@@ -37,17 +38,11 @@ public class Enemy : MonoBehaviour//, IEnemyFactory
                 asteroid = Instantiate(Resources.Load<Asteroid>("AsteroidXS"), enemyPosition, enemyRotation);              
                 break;
         }
-        asteroid.damage = enemyDamage;
+        //asteroid.damage = enemyDamage;
+        asteroid.speed = speed;
         return asteroid;
     }
 
 
 }
 
-enum AsteroidType
-{
-    ASTL,
-    ASTM,
-    ASTS,
-    ASTXS
-}
