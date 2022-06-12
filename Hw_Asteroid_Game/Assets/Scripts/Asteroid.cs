@@ -5,7 +5,7 @@ public class Asteroid : Enemy
 {
     private Rigidbody2D _rigidbody;
     private SpriteRenderer _asteroidSprite;
-    private AsteroidType asteroidType;
+    public AsteroidType asteroidType { get; private set; }
 
     void Awake()
     {
@@ -33,7 +33,17 @@ public class Asteroid : Enemy
         _rigidbody.AddForce(_rigidbody.transform.up * speed);
     }
 
+    public void OnTriggerEnter2D(Collider bulletCol)
+    {
+        if(bulletCol.CompareTag("Bullet"))
+        {
+            poolObject.GetComponent<SpawnController>().ReturnAsteroidToPool(this);
+            DeactivateEnemy();
+        }
+    }
+
 }
+
 
 public enum AsteroidType
 {

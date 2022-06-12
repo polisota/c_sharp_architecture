@@ -8,13 +8,16 @@ public class Enemy : MonoBehaviour//, IEnemyFactory
    
     protected float speed;
 
-    /*
+    protected Transform poolObject;
+
+    
      void Start()
     {
         //damage = new Damage(maxHp, maxHp);
+        poolObject = GameObject.Find("Spawner").transform;
     }
     
-     */
+     
 
     public static Asteroid CreateAsteroidEnemy(Vector3 enemyPosition, Quaternion enemyRotation, AsteroidType asteroidType, float speed)
     {
@@ -43,6 +46,20 @@ public class Enemy : MonoBehaviour//, IEnemyFactory
         return asteroid;
     }
 
+    public void ActivateEnemy(Vector3 enemyPosition, Quaternion enemyRotation)
+    {
+        transform.position = enemyPosition;
+        transform.rotation = enemyRotation;
+        gameObject.SetActive(true);
+    }
 
+    protected void DeactivateEnemy()
+    {
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+        transform.parent = poolObject;
+        //poolObject.GetComponent<
+
+    }
 }
 
