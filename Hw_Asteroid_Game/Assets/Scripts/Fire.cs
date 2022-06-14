@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class Fire : IFire
 {
-    Vector3 bulletPos;
+    private Vector3 bulletPos;
     //Vector3 direction;
+    private PoolBullet poolBullet;
 
-    public Fire(Vector3 bulletPos)
+    public Fire(Vector3 bulletPos, PoolBullet poolBullet)
     {
         this.bulletPos = bulletPos;
+        this.poolBullet = poolBullet;
     }
 
-    void Shooting(Vector3 bulletPos, Vector3 direction)
+    public void Shooting(Vector3 bulletPos, Vector3 direction)
     {
-
+       if(poolBullet.GetBullet() == null)
+       {
+            BulletFabric.CreateBullet(bulletPos, direction);
+       }
     }
 }

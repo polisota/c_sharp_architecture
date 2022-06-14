@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
-public class PoolEnemy : IPool
+public class PoolEnemy 
 {
     private Dictionary<AsteroidType, HashSet<Asteroid>> asteroidDict;
     //private int size;
@@ -27,7 +28,7 @@ public class PoolEnemy : IPool
             HashSet<Asteroid> asteroidHashSet = asteroidDict[asteroidType];
             if(asteroidHashSet.Count > 0)
             {
-                //Asteroid getAsteroid = asteroidHashSet.TryGetValue(asteroidHashSet.Count - 1);
+                Asteroid getAsteroid = asteroidHashSet.First();
                 asteroidHashSet.Remove(getAsteroid);
                 return getAsteroid;
             }
