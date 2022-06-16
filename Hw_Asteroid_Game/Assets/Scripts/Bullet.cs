@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : BulletFabric
@@ -13,11 +11,17 @@ public class Bullet : BulletFabric
 
     void Start()
     {
-        _rigidbody2D.AddForce(transform.up*speed);
+        BulletMove();
+        poolObject = GameObject.Find("BulletSpawner").transform;
     }
-
+    
     void OnCollisionEnter2D(Collision2D collision)
     {
         DeactivateBullet();
+    }
+
+    public void BulletMove()
+    {
+        _rigidbody2D.AddForce(transform.up * speed);
     }
 }

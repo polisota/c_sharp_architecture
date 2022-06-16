@@ -1,24 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fire : IFire
 {
-    private Vector3 bulletPos;
-    //Vector3 direction;
-    private PoolBullet poolBullet;
+    private BulletSpawn _bulletSpawn;    
 
-    public Fire(Vector3 bulletPos, PoolBullet poolBullet)
+    public Fire(BulletSpawn _bulletSpawn)
     {
-        this.bulletPos = bulletPos;
-        this.poolBullet = poolBullet;
+        this._bulletSpawn = _bulletSpawn;
     }
 
-    public void Shooting(Vector3 bulletPos, Vector3 direction)
+    public void Shooting(Vector3 bulletPos, Quaternion direction)
     {
-       if(poolBullet.GetBullet() == null)
-       {
-            BulletFabric.CreateBullet(bulletPos, direction);
-       }
+        _bulletSpawn.SpawnBullet(bulletPos, direction);
     }
 }
