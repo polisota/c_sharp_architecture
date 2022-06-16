@@ -2,22 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour//, IEnemyFactory
+public class Enemy : MonoBehaviour
 {
-    protected Damage damage;
-   
+    protected Damage damage;   
     protected float speed;
-
     protected Transform poolObject;
-
     
-     void Start()
+    void Start()
     {
         //damage = new Damage(maxHp, maxHp);
         poolObject = GameObject.Find("Spawner").transform;
+
     }
-    
-     
 
     public static Asteroid CreateAsteroidEnemy(Vector3 enemyPosition, Quaternion enemyRotation, AsteroidType asteroidType, float speed)
     {
@@ -59,7 +55,6 @@ public class Enemy : MonoBehaviour//, IEnemyFactory
         transform.rotation = Quaternion.identity;
         transform.parent = poolObject;
         //poolObject.GetComponent<
-
     }
 }
 

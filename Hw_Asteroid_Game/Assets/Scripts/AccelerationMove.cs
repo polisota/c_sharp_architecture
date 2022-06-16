@@ -20,15 +20,6 @@ public class AccelerationMove : MoveTransform
 
     public void RemoveAcceleration()
     {
-        speed = 0;
-
-        /*
-         if (speed > 0)
-        {
-            speed -= _acceleration;
-            
-        }  
-         */
-
+        speed = 0;        
     }
 }

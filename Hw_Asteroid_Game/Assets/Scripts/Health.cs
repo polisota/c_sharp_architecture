@@ -1,4 +1,3 @@
-
 public class Health
 {
     public float currentHp { get; protected set; }
@@ -9,5 +8,4 @@ public class Health
         this.currentHp = currentHp;
         this.maxHp = maxHp;
     }
-
 }

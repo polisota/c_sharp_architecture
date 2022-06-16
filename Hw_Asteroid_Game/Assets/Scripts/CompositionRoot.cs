@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class CompositionRoot : MonoBehaviour
 {
-
     void Start()
     {
         //AsteroidSpawn();
         
-    }
-
-   
+    }   
 }

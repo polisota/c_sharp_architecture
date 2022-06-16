@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxHp;
     private IMove _moveInterface;
     private IRotation _rotationInterface;
+    private IFire _fireInterface;
+    private BulletSpawn _bulletSpawn;
     private Ship _ship;
     private float direction;
     private Damage damage;
@@ -23,16 +25,16 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        _bulletSpawn = GameObject.Find("BulletSpawner").GetComponent<BulletSpawn>();
+        _fireInterface = new Fire(_bulletSpawn);
         _moveInterface = new AccelerationMove(_rigidbody, _speed, _acceleration, _maxSpeed);
         _rotationInterface = new RotationTransform(_rigidbody, _speedRotation);
-        _ship = new Ship(_moveInterface, _rotationInterface);
+        _ship = new Ship(_moveInterface, _rotationInterface, _fireInterface);
         damage = new Damage(maxHp, maxHp);
-
     }
 
     void Update()
-    {
-        
+    {        
         if(Input.GetKey(KeyCode.W))
         {
             _ship.AddAcceleration();
@@ -43,8 +45,12 @@ public class Player : MonoBehaviour
             _ship.RemoveAcceleration();
         }
 
-        direction = Input.GetAxis("Horizontal");
+        if (Input.GetMouseButtonDown(0))
+        {
+            _ship.Shooting(transform.position, transform.rotation);
+        }
 
+        direction = Input.GetAxis("Horizontal");
     }
 
     void FixedUpdate()
@@ -52,7 +58,4 @@ public class Player : MonoBehaviour
         _ship.Rotation(direction);
         _ship.Move(Time.deltaTime);
     }
-
-    
-
 }

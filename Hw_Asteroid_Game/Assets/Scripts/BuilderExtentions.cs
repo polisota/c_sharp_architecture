@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public static class BuilderExtentions : MonoBehaviour
+public static class BuilderExtentions
 {
     public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
     {
-        bool component = gameObject.GetComponent<T>();
+        var component = gameObject.GetComponent<T>();
         if (!component)
         {
-            component = gameObject.AddComponent<T>():
+            component = gameObject.AddComponent<T>();
         }
         return component;
     }

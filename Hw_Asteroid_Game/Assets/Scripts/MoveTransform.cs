@@ -12,14 +12,11 @@ public class MoveTransform : IMove
         this._rigidbody = _rigidbody;
         this.speed = speed;
         this.maxSpeed = maxSpeed;
-}
+    }
 
     public void Move( float deltaTime)
     {
-        float _speed = deltaTime * speed;
-        //_move = _rigidbody.transform.position + new Vector3(0, speed, 0);
-        //_rigidbody.MovePosition(_move);
+        float _speed = deltaTime * speed;        
         _rigidbody.AddForce(_speed * _rigidbody.transform.up);
     }
-
 }

@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
-    private PoolEnemy _poolEnemy;
-    //[SerializeField] private int _countL;
-    //[SerializeField] private int _countM;
-    //[SerializeField] private int _countS;
-    //[SerializeField] private int _countXS;
+    private PoolEnemy _poolEnemy;   
 
     [SerializeField] private float _xRange;
     [SerializeField] private float _yRange;
@@ -17,7 +13,7 @@ public class SpawnController : MonoBehaviour
 
     void Start()
     {
-        _poolEnemy = new PoolEnemy();// _countL, _countM, _countS, _countXS);
+        _poolEnemy = new PoolEnemy();
         StartCoroutine(SpawnAstRutine());
     }
 
@@ -55,8 +51,7 @@ public class SpawnController : MonoBehaviour
                 break;
         }
 
-        int astType = (int)Random.Range(1, 5);
-        //float astType = System.Random.Next(1, 5);
+        int astType = (int)Random.Range(1, 5);        
         AsteroidType asteroidType = AsteroidType.ASTM;
         if (astType == 1)
             asteroidType = AsteroidType.ASTL;

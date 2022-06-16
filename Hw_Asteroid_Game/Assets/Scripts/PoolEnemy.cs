@@ -5,19 +5,10 @@ using System.Linq;
 
 public class PoolEnemy 
 {
-    private Dictionary<AsteroidType, HashSet<Asteroid>> asteroidDict;
-    //private int size;
-    //private int _countL;
-    //private int _countM;
-    //private int _countS;
-    //private int _countXS;
+    private Dictionary<AsteroidType, HashSet<Asteroid>> asteroidDict;  
 
-    public PoolEnemy()//int _countL, int _countM, int _countS, int _countXS)
+    public PoolEnemy()
     {
-        //this._countL = _countL;
-        //this._countM = _countM;
-        //this._countS = _countS;
-        //this._countXS = _countXS;
         asteroidDict = new Dictionary<AsteroidType, HashSet<Asteroid>>();
     }
 
@@ -40,17 +31,13 @@ public class PoolEnemy
     {
         if (asteroidDict.ContainsKey(ast.asteroidType))
         {
-            asteroidDict[ast.asteroidType].Add(ast);
-            
+            asteroidDict[ast.asteroidType].Add(ast);            
         }
         else
         {
             HashSet<Asteroid> asteroidHashSet = new HashSet<Asteroid>();
             asteroidHashSet.Add(ast);
-            asteroidDict[ast.asteroidType] = asteroidHashSet;
-            
+            asteroidDict[ast.asteroidType] = asteroidHashSet;            
         }
-
-
     }
 }

@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class Asteroid : Enemy
@@ -12,7 +11,6 @@ public class Asteroid : Enemy
         _rigidbody = GetComponent <Rigidbody2D>();
         _asteroidSprite = GetComponent<SpriteRenderer>();        
     }
-
     
     void Start()
     {
@@ -25,15 +23,14 @@ public class Asteroid : Enemy
         else if (asteroidType == AsteroidType.ASTXS)
             damage = new Damage(10, 10);
         RandomAsteroidMove();
-    }
-     
+    }     
 
     private void RandomAsteroidMove()
     {
         _rigidbody.AddForce(_rigidbody.transform.up * speed);
     }
 
-    public void OnTriggerEnter2D(Collider bulletCol)
+    public void OnTriggerEnter2D(Collider2D bulletCol)
     {
         if(bulletCol.CompareTag("Bullet"))
         {
@@ -41,9 +38,7 @@ public class Asteroid : Enemy
             DeactivateEnemy();
         }
     }
-
 }
-
 
 public enum AsteroidType
 {

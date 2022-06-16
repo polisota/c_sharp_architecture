@@ -1,5 +1,4 @@
 public interface IMove 
 {
-    void Move( float deltaTime);    
-  
+    void Move( float deltaTime);
 }

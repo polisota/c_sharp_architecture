@@ -235,6 +235,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d26bf8937d6b29418d8ea08bbf780fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _xRange: 0
+  _yRange: 0
+  _sideOffset: 0
+  startAstCount: 0
 --- !u!4 &1202909320
 Transform:
   m_ObjectHideFlags: 0
@@ -248,6 +252,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1918825872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1918825874}
+  - component: {fileID: 1918825873}
+  m_Layer: 0
+  m_Name: BulletSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1918825873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918825872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe59451314c81bf4b81fa6d74c4ba285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 509
+  _bulletCapacity: 15
+--- !u!4 &1918825874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918825872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.20719275, y: 0.37468356, z: -0.7492066}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2078956009
 GameObject:
@@ -278,9 +327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7074065ea0efc434aa38a6c72ba9cf2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _xRange: 10
-  _yRange: 10
-  _sideOffset: 3
 --- !u!4 &2078956011
 Transform:
   m_ObjectHideFlags: 0

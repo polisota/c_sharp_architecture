@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ship : IMove, IRotation, IFire
-{
-    
+{    
     private IMove _imove;
     private IRotation _irotation;
     private IFire _ifire;
@@ -26,7 +25,7 @@ public class Ship : IMove, IRotation, IFire
         _irotation.Rotation(direction);
     }
 
-    public void Shooting(Vector3 bulletPos, Vector3 direction)
+    public void Shooting(Vector3 bulletPos, Quaternion direction)
     {
         _ifire.Shooting(bulletPos, direction);
     }
@@ -36,10 +35,8 @@ public class Ship : IMove, IRotation, IFire
         if (_imove is AccelerationMove i)
         {
             i.AddAcceleration();
-        }
-        
-    }  
-    
+        }        
+    }      
 
     public void RemoveAcceleration()
     {
