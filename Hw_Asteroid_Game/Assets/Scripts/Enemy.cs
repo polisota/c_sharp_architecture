@@ -8,12 +8,7 @@ public class Enemy : MonoBehaviour
     protected float speed;
     protected Transform poolObject;
     
-    void Start()
-    {
-        //damage = new Damage(maxHp, maxHp);
-        poolObject = GameObject.Find("Spawner").transform;
-
-    }
+   
 
     public static Asteroid CreateAsteroidEnemy(Vector3 enemyPosition, Quaternion enemyRotation, AsteroidType asteroidType, float speed)
     {

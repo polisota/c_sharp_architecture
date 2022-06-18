@@ -11,9 +11,13 @@ public class Asteroid : Enemy
         _rigidbody = GetComponent <Rigidbody2D>();
         _asteroidSprite = GetComponent<SpriteRenderer>();        
     }
-    
+
     void Start()
     {
+        //damage = new Damage(maxHp, maxHp);
+        poolObject = GameObject.Find("Spawner").transform;
+        Debug.Log(poolObject);
+
         if (asteroidType == AsteroidType.ASTL)
             damage = new Damage(70, 70);
         else if (asteroidType == AsteroidType.ASTM)
@@ -32,10 +36,16 @@ public class Asteroid : Enemy
 
     public void OnTriggerEnter2D(Collider2D bulletCol)
     {
-        if(bulletCol.CompareTag("Bullet"))
+        if(bulletCol.gameObject.name.Equals("Bullet"))
         {
-            poolObject.GetComponent<SpawnController>().ReturnAsteroidToPool(this);
-            DeactivateEnemy();
+            if(poolObject.GetComponent<SpawnController>().ReturnAsteroidToPool(this))
+            {
+                DeactivateEnemy();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }           
         }
     }
 }

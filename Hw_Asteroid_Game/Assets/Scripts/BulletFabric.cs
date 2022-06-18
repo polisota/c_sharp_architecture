@@ -7,8 +7,9 @@ public class BulletFabric : MonoBehaviour
 
     public static Bullet CreateBullet(Vector3 bulletPosition, Quaternion bulletRotation, float speed)
     {
-        var bullet = new GameObject().SetName("Bullet").AddRigidbody2D().AddSprite(Resources.Load<Sprite>("playerBullet")).BoxCollider2D().AddBulletScript();
+        var bullet = new GameObject().SetName("Bullet").AddRigidbody2D(0).AddSprite(Resources.Load<Sprite>("playerBullet")).BoxCollider2D(true).AddBulletScript();
         bullet.transform.rotation = bulletRotation;
+        bullet.transform.position = bulletPosition;
         bullet.GetComponent<Bullet>().speed = speed;
         return bullet.GetComponent<Bullet>();
     }
@@ -31,6 +32,10 @@ public class BulletFabric : MonoBehaviour
         if (!poolObject.GetComponent<BulletSpawn>().ReturnToPool(GetComponent <Bullet>()))
         {
             Destroy(gameObject);
+        }
+        else
+        {
+            gameObject.SetActive(false);
         }
     }
 }

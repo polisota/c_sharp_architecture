@@ -5,11 +5,13 @@ using System.Linq;
 
 public class PoolEnemy 
 {
-    private Dictionary<AsteroidType, HashSet<Asteroid>> asteroidDict;  
+    private Dictionary<AsteroidType, HashSet<Asteroid>> asteroidDict;
+    private int _astCapacity;
 
-    public PoolEnemy()
+    public PoolEnemy(int _astCapacity)
     {
         asteroidDict = new Dictionary<AsteroidType, HashSet<Asteroid>>();
+        this._astCapacity = _astCapacity;
     }
 
     public Asteroid GetAsteroid(AsteroidType asteroidType)
@@ -27,17 +29,23 @@ public class PoolEnemy
         return null;
     }
 
-    public void AddAsteroid(Asteroid ast)
+    public bool AddAsteroid(Asteroid ast)
     {
         if (asteroidDict.ContainsKey(ast.asteroidType))
         {
-            asteroidDict[ast.asteroidType].Add(ast);            
+            if (asteroidDict[ast.asteroidType].Count < _astCapacity)
+            {
+                asteroidDict[ast.asteroidType].Add(ast);
+                return true;
+            }
+            return false;           
         }
         else
         {
             HashSet<Asteroid> asteroidHashSet = new HashSet<Asteroid>();
             asteroidHashSet.Add(ast);
-            asteroidDict[ast.asteroidType] = asteroidHashSet;            
+            asteroidDict[ast.asteroidType] = asteroidHashSet;
+            return true;
         }
     }
 }

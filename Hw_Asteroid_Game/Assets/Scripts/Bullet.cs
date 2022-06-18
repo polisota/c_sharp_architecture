@@ -15,7 +15,7 @@ public class Bullet : BulletFabric
         poolObject = GameObject.Find("BulletSpawner").transform;
     }
     
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D col)
     {
         DeactivateBullet();
     }

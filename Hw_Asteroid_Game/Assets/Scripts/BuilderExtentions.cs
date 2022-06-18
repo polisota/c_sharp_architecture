@@ -18,9 +18,10 @@ public static class BuilderExtentions
         return gameObject;
     }
 
-    public static GameObject AddRigidbody2D(this GameObject gameObject)
+    public static GameObject AddRigidbody2D(this GameObject gameObject, float gravity)
     {
-        gameObject.GetOrAddComponent<Rigidbody2D>();
+        var comp = gameObject.GetOrAddComponent<Rigidbody2D>();
+        comp.gravityScale = gravity;
         return gameObject;
     }
 
@@ -31,9 +32,10 @@ public static class BuilderExtentions
         return gameObject;
     }
 
-    public static GameObject BoxCollider2D(this GameObject gameObject)
+    public static GameObject BoxCollider2D(this GameObject gameObject, bool trigger)
     {
-        gameObject.GetOrAddComponent<BoxCollider2D>();
+        var col = gameObject.GetOrAddComponent<BoxCollider2D>();
+        col.isTrigger = trigger;
         return gameObject;
     }
 

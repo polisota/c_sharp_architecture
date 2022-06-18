@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
+    //private BoxCollider2D _col;
     [SerializeField] private float _speedRotation;
     [SerializeField] private float _speed;
     [SerializeField] private float _maxSpeed;
@@ -21,10 +22,11 @@ public class Player : MonoBehaviour
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        //_col = GetComponent<BoxCollider2D>();
     }
 
     void Start()
-    {
+    {        
         _bulletSpawn = GameObject.Find("BulletSpawner").GetComponent<BulletSpawn>();
         _fireInterface = new Fire(_bulletSpawn);
         _moveInterface = new AccelerationMove(_rigidbody, _speed, _acceleration, _maxSpeed);
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
         }
 
         if (Input.GetMouseButtonDown(0))
-        {
+        {            
             _ship.Shooting(transform.position, transform.rotation);
         }
 

@@ -8,13 +8,15 @@ public class SpawnController : MonoBehaviour
 
     [SerializeField] private float _xRange;
     [SerializeField] private float _yRange;
+    [SerializeField] private float _speedRange;
     [SerializeField] private float _sideOffset;
-    [SerializeField] private int startAstCount;
+    
+    [SerializeField] private int _astCapacity;
 
     void Start()
     {
-        _poolEnemy = new PoolEnemy();
-        StartCoroutine(SpawnAstRutine());
+        _poolEnemy = new PoolEnemy(_astCapacity);
+        InvokeRepeating("AsteroidSpawn", 0.5f, 5f);
     }
 
     public void AsteroidSpawn()
@@ -62,22 +64,23 @@ public class SpawnController : MonoBehaviour
         else if (astType == 4)
             asteroidType = AsteroidType.ASTXS;
 
-        float speed = Random.Range(1000, 5000);
+        float speed = Random.Range(_speedRange, 3 * _speedRange);
 
-        Enemy.CreateAsteroidEnemy(new Vector3(xPosition, 0, yPosition), rotation, asteroidType, speed);
-    }
-
-    public void ReturnAsteroidToPool(Asteroid ast)
-    {
-        _poolEnemy.AddAsteroid(ast);
-    }
-
-    IEnumerator SpawnAstRutine()
-    {
-        for(int i = 0; i < startAstCount; i++)
+        Asteroid ast = _poolEnemy.GetAsteroid(asteroidType);
+        if (ast == null)
         {
-            AsteroidSpawn();
-            yield return new WaitForSeconds(5);
+            Enemy.CreateAsteroidEnemy(new Vector3(xPosition, 0, yPosition), rotation, asteroidType, speed);
         }
+        else
+        {
+            ast.ActivateEnemy(new Vector3(xPosition, 0, yPosition), rotation);
+        }
+        
     }
+
+    public bool ReturnAsteroidToPool(Asteroid ast)
+    {
+        return _poolEnemy.AddAsteroid(ast);
+    }
+   
 }
