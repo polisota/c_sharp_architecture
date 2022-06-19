@@ -12,6 +12,16 @@ public class SpawnController : MonoBehaviour
     [SerializeField] private float _sideOffset;
     
     [SerializeField] private int _astCapacity;
+    [SerializeField] private bool _random;
+
+    private Info info;
+
+
+    void Awake()
+    {
+        info = LoadInfo.Load();
+    }
+
 
     void Start()
     {
@@ -55,21 +65,36 @@ public class SpawnController : MonoBehaviour
 
         int astType = (int)Random.Range(1, 5);        
         AsteroidType asteroidType = AsteroidType.ASTM;
-        if (astType == 1)
-            asteroidType = AsteroidType.ASTL;
-        else if (astType == 2)
-            asteroidType = AsteroidType.ASTM;
-        else if (astType == 3)
-            asteroidType = AsteroidType.ASTS;
-        else if (astType == 4)
-            asteroidType = AsteroidType.ASTXS;
+        float speed = 0;
+        float health = 0;
+        Damage damage = new Damage(0, 0);
+        //damage = new Damage(70, 70);
+        if (_random)
+        {
+            if (astType == 1)
+                asteroidType = AsteroidType.ASTL;
+            else if (astType == 2)
+                asteroidType = AsteroidType.ASTM;
+            else if (astType == 3)
+                asteroidType = AsteroidType.ASTS;
+            else if (astType == 4)
+                asteroidType = AsteroidType.ASTXS;
 
-        float speed = Random.Range(_speedRange, 3 * _speedRange);
+            speed = Random.Range(_speedRange, 3 * _speedRange);
+            health = Random.Range(50, 80);            
+        }
+        else
+        {
+            speed = info.speed[astType - 1];
+            health = info.health[astType - 1];            
+        }
+        damage = new Damage(health, health);
+
 
         Asteroid ast = _poolEnemy.GetAsteroid(asteroidType);
         if (ast == null)
         {
-            Enemy.CreateAsteroidEnemy(new Vector3(xPosition, 0, yPosition), rotation, asteroidType, speed);
+            Enemy.CreateAsteroidEnemy(new Vector3(xPosition, 0, yPosition), rotation, asteroidType, speed, damage);
         }
         else
         {

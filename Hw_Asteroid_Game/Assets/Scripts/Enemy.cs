@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     
    
 
-    public static Asteroid CreateAsteroidEnemy(Vector3 enemyPosition, Quaternion enemyRotation, AsteroidType asteroidType, float speed)
+    public static Asteroid CreateAsteroidEnemy(Vector3 enemyPosition, Quaternion enemyRotation, AsteroidType asteroidType, float speed, Damage enemyDamage)
     {
         Asteroid asteroid = null;
 
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
                 asteroid = Instantiate(Resources.Load<Asteroid>("AsteroidXS"), enemyPosition, enemyRotation);              
                 break;
         }
-        //asteroid.damage = enemyDamage;
+        asteroid.damage = enemyDamage;
         asteroid.speed = speed;
         return asteroid;
     }
