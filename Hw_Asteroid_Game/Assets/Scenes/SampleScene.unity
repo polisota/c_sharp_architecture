@@ -335,6 +335,7 @@ MonoBehaviour:
   _speedRange: 0
   _sideOffset: 3
   _astCapacity: 1
+  _random: 0
 --- !u!4 &1202909320
 Transform:
   m_ObjectHideFlags: 0

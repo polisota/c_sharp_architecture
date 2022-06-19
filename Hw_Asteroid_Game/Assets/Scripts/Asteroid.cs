@@ -17,8 +17,8 @@ public class Asteroid : Enemy
         //damage = new Damage(maxHp, maxHp);
         poolObject = GameObject.Find("Spawner").transform;
         Debug.Log(poolObject);
-
-        if (asteroidType == AsteroidType.ASTL)
+        /*
+         if (asteroidType == AsteroidType.ASTL)
             damage = new Damage(70, 70);
         else if (asteroidType == AsteroidType.ASTM)
             damage = new Damage(50, 50);
@@ -26,6 +26,8 @@ public class Asteroid : Enemy
             damage = new Damage(30, 30);
         else if (asteroidType == AsteroidType.ASTXS)
             damage = new Damage(10, 10);
+         */
+
         RandomAsteroidMove();
     }     
 
