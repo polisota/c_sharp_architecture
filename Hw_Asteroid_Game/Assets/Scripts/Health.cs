@@ -8,4 +8,9 @@ public class Health
         this.currentHp = currentHp;
         this.maxHp = maxHp;
     }
+
+    public void ToMaxHp ()
+    {
+        currentHp = maxHp;
+    }
 }

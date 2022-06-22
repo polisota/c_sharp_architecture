@@ -5,6 +5,7 @@ public class BulletSpawn : MonoBehaviour
     [SerializeField] private float speed;
     private PoolBullet poolBullet;
     [SerializeField] private int _bulletCapacity;
+    [SerializeField] private float hit;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class BulletSpawn : MonoBehaviour
 
         if (bullet == null)
         {
-            BulletFabric.CreateBullet(bulletPos, direction, speed);
+            BulletFabric.CreateBullet(bulletPos, direction, speed, hit);
         }
         else
         {

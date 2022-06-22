@@ -17,7 +17,7 @@ public class Bullet : BulletFabric
     
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.CompareTag("Asteroid"))
+        if(col.CompareTag("Asteroid") || col.CompareTag("Wall"))
         {
             DeactivateBullet();
         }        

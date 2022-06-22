@@ -18,6 +18,12 @@ public static class BuilderExtentions
         return gameObject;
     }
 
+    public static GameObject SetTag(this GameObject gameObject, string tag)
+    {
+        gameObject.tag = tag;
+        return gameObject;
+    }
+
     public static GameObject AddRigidbody2D(this GameObject gameObject, float gravity)
     {
         var comp = gameObject.GetOrAddComponent<Rigidbody2D>();

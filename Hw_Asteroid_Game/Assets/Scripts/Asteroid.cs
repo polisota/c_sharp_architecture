@@ -16,7 +16,7 @@ public class Asteroid : Enemy
     {
         //damage = new Damage(maxHp, maxHp);
         poolObject = GameObject.Find("Spawner").transform;
-        Debug.Log(poolObject);
+        
         /*
          if (asteroidType == AsteroidType.ASTL)
             damage = new Damage(70, 70);
@@ -40,14 +40,19 @@ public class Asteroid : Enemy
     {
         if(bulletCol.gameObject.name.Equals("Bullet"))
         {
-            if(poolObject.GetComponent<SpawnController>().ReturnAsteroidToPool(this))
+            SceneController.scoreCount += 1000;
+
+            if (!damage.TakeDamage(bulletCol.gameObject.GetComponent<Bullet>().hit))
             {
-                DeactivateEnemy();
-            }
-            else
-            {
-                Destroy(gameObject);
-            }           
+                if (poolObject.GetComponent<SpawnController>().ReturnAsteroidToPool(this))
+                {
+                    DeactivateEnemy();
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+            }                  
         }
     }
 }

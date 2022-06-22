@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private IFire _fireInterface;
     private BulletSpawn _bulletSpawn;
     private Ship _ship;
+    private SceneController _sceneController;
     private float direction;
     private Damage damage;
 
@@ -32,12 +33,13 @@ public class Player : MonoBehaviour
         _moveInterface = new AccelerationMove(_rigidbody, _speed, _acceleration, _maxSpeed);
         _rotationInterface = new RotationTransform(_rigidbody, _speedRotation);
         _ship = new Ship(_moveInterface, _rotationInterface, _fireInterface);
+        _sceneController = GameObject.Find("SceneController").GetComponent<SceneController>();
         damage = new Damage(maxHp, maxHp);
     }
 
     void Update()
-    {        
-        if(Input.GetKey(KeyCode.W))
+    {
+        if (Input.GetKey(KeyCode.W))
         {
             _ship.AddAcceleration();
         }
@@ -48,16 +50,41 @@ public class Player : MonoBehaviour
         }
 
         if (Input.GetMouseButtonDown(0))
-        {            
+        {
             _ship.Shooting(transform.position, transform.rotation);
         }
 
         direction = Input.GetAxis("Horizontal");
     }
 
+    void OnCollisionEnter2D (Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Asteroid"))
+        {
+            SceneController.livesCount--;
+
+            if (SceneController.livesCount>0)
+            {                
+                _sceneController.Restart();
+            }
+            else
+            {
+                _sceneController.RestartLevel();
+            }           
+            
+        }
+    }
+
     void FixedUpdate()
     {
         _ship.Rotation(direction);
         _ship.Move(Time.deltaTime);
+    }
+
+    public void Respawn()
+    {
+        transform.rotation = Quaternion.identity;
+        transform.position = Vector3.zero;
+        damage.ToMaxHp();        
     }
 }

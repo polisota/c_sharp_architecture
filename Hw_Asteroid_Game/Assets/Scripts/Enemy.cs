@@ -6,9 +6,15 @@ public class Enemy : MonoBehaviour
 {
     protected Damage damage;   
     protected float speed;
-    protected Transform poolObject;
-    
+    protected Transform poolObject;    
    
+    public static UFO CreateUFO(Vector3 enemyPosition, Quaternion enemyRotation, float speed, Damage enemyDamage)
+    {
+        UFO ufo = Instantiate(Resources.Load<UFO>("ufo"), enemyPosition, enemyRotation);
+        ufo.damage = enemyDamage;
+        ufo.speed = speed;
+        return ufo;
+    }
 
     public static Asteroid CreateAsteroidEnemy(Vector3 enemyPosition, Quaternion enemyRotation, AsteroidType asteroidType, float speed, Damage enemyDamage)
     {
