@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class UFOMove : IMove
 {
+    private Rigidbody2D _rigidbody;
     private bool moveRight;
     private float speed;
     private float moveRangeX;
+    private Transform transformUfo;
 
-    public UFOMove (bool moveRight, float speed)
+    public UFOMove (bool moveRight, float speed, Rigidbody2D _rigidbody, float moveRangeX, Transform transformUfo)
     {
+        this.moveRangeX = moveRangeX;
+        this._rigidbody = _rigidbody;
         this.moveRight = moveRight;
         this.speed = speed;
+        this.transformUfo = transformUfo;
     }
 
     public void Move(float deltaTime)
@@ -19,21 +24,23 @@ public class UFOMove : IMove
         CheckPosition();
         if (moveRight)
         {
-            transform.position = new Vector2(transform.position.x + speed * deltaTime, transform.position.y);
+            _rigidbody.MovePosition(new Vector3 (transformUfo.position.x + speed * deltaTime, transformUfo.position.y, 0));
+            //transform.position = new Vector2(transform.position.x + speed * deltaTime, transform.position.y);
         }
         else
         {
-            transform.position = new Vector2(-transform.position.x + speed * deltaTime, -transform.position.y);
+            _rigidbody.MovePosition(new Vector3 (transformUfo.position.x - speed * deltaTime, transformUfo.position.y, 0));
+            //transform.position = new Vector2(-transform.position.x + speed * deltaTime, -transform.position.y);
         }
     }
 
     void CheckPosition()
     {
-        if (!moveRight && transform.position.x <= -moveRangeX)
+        if (!moveRight && transformUfo.position.x <= -moveRangeX)
         {
             moveRight = true;            
         }
-        else if (moveRight && transform.position.x <= moveRangeX)
+        else if (moveRight && transformUfo.position.x >= moveRangeX)
         {
             moveRight = false;
         }        

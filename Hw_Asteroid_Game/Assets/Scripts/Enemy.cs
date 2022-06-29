@@ -8,11 +8,12 @@ public class Enemy : MonoBehaviour
     protected float speed;
     protected Transform poolObject;    
    
-    public static UFO CreateUFO(Vector3 enemyPosition, Quaternion enemyRotation, float speed, Damage enemyDamage)
+    public static UFO CreateUFO(Vector3 enemyPosition, Quaternion enemyRotation, float speed, Damage enemyDamage, float moveRangeX)
     {
         UFO ufo = Instantiate(Resources.Load<UFO>("ufo"), enemyPosition, enemyRotation);
         ufo.damage = enemyDamage;
         ufo.speed = speed;
+        ufo.moveRangeX = moveRangeX;
         return ufo;
     }
 
@@ -48,6 +49,7 @@ public class Enemy : MonoBehaviour
         transform.position = enemyPosition;
         transform.rotation = enemyRotation;
         gameObject.SetActive(true);
+        damage.ToMaxHp();
     }
 
     protected void DeactivateEnemy()

@@ -2029,7 +2029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 509
   _bulletCapacity: 15
-  hit: 50
+  hit: 500
 --- !u!4 &1918825874
 Transform:
   m_ObjectHideFlags: 0
@@ -2070,9 +2070,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2058819613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b8f29180db31204b86134dd93602ea0, type: 3}
+  m_Script: {fileID: 11500000, guid: ba8cd36899e05374196ad893b1524d52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3
+  _ufoCapacity: 1
+  _xStart: -9
+  _yStart: 3
+  ufoHealth: 1000
+  moveRangeX: 10
 --- !u!4 &2058819615
 Transform:
   m_ObjectHideFlags: 0
