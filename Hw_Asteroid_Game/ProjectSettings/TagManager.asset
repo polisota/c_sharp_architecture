@@ -10,6 +10,7 @@ TagManager:
   - SceneController
   - MainMenu
   - UFO
+  - BulletUfo
   layers:
   - Default
   - TransparentFX

@@ -8,12 +8,13 @@ public class Enemy : MonoBehaviour
     protected float speed;
     protected Transform poolObject;    
    
-    public static UFO CreateUFO(Vector3 enemyPosition, Quaternion enemyRotation, float speed, Damage enemyDamage, float moveRangeX)
+    public static UFO CreateUFO(Vector3 enemyPosition, Quaternion enemyRotation, float speed, Damage enemyDamage, float moveRangeX, float shootSkip)
     {
         UFO ufo = Instantiate(Resources.Load<UFO>("ufo"), enemyPosition, enemyRotation);
         ufo.damage = enemyDamage;
         ufo.speed = speed;
         ufo.moveRangeX = moveRangeX;
+        ufo.shootSkip = shootSkip;
         return ufo;
     }
 
@@ -44,7 +45,7 @@ public class Enemy : MonoBehaviour
         return asteroid;
     }
 
-    public void ActivateEnemy(Vector3 enemyPosition, Quaternion enemyRotation)
+    public virtual void ActivateEnemy(Vector3 enemyPosition, Quaternion enemyRotation)
     {
         transform.position = enemyPosition;
         transform.rotation = enemyRotation;
@@ -52,7 +53,7 @@ public class Enemy : MonoBehaviour
         damage.ToMaxHp();
     }
 
-    protected void DeactivateEnemy()
+    protected virtual void DeactivateEnemy()
     {
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;

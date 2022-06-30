@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveRangeX: 0
+  shootSkip: 0
 --- !u!50 &7756925421782758254
 Rigidbody2D:
   serializedVersion: 4

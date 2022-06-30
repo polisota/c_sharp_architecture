@@ -8,6 +8,9 @@ public class UFO : Enemy
     private SpriteRenderer _asteroidSprite;
     private IMove ufoMove;
     public float moveRangeX;
+    private IFire _fireInterface;
+    private BulletSpawnUfo _bulletSpawn;
+    public float shootSkip;
 
     void Awake()
     {
@@ -18,7 +21,38 @@ public class UFO : Enemy
     void Start()
     {
         ufoMove = new UFOMove(true, speed, _rigidbody, moveRangeX, transform);
-        poolObject = GameObject.Find("UFOPool").transform;       
+        poolObject = GameObject.Find("UFOPool").transform;
+        _bulletSpawn = GameObject.Find("UfoBulletSpawner").GetComponent<BulletSpawnUfo>();
+        _fireInterface = new FireUfo(_bulletSpawn);
+
+        StartCoroutine (UfoShoot());
+    }
+
+    IEnumerator UfoShoot()
+    {
+        do
+        {
+            _fireInterface.Shooting(transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(shootSkip);
+        }
+        while (damage.currentHp > 0);
+    }
+
+    public override void ActivateEnemy(Vector3 enemyPosition, Quaternion enemyRotation)
+    {
+        transform.position = enemyPosition;
+        transform.rotation = enemyRotation;
+        gameObject.SetActive(true);
+        damage.ToMaxHp();
+        StartCoroutine(UfoShoot());
+    }
+
+    protected override void DeactivateEnemy()
+    {
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+        transform.parent = poolObject;
+        StopCoroutine(UfoShoot());
     }
 
     void FixedUpdate()

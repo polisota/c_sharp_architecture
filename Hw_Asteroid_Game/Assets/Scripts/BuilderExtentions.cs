@@ -50,4 +50,10 @@ public static class BuilderExtentions
         gameObject.GetOrAddComponent<Bullet>();
         return gameObject;
     }
+
+    public static GameObject AddBulletUfoScript(this GameObject gameObject)
+    {
+        gameObject.GetOrAddComponent<UfoBullet>();
+        return gameObject;
+    }
 }

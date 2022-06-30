@@ -11,6 +11,7 @@ public class UFOSpawn : MonoBehaviour
     [SerializeField] private float _yStart;
     [SerializeField] private float ufoHealth;
     [SerializeField] private float moveRangeX;
+    [SerializeField] private float shootSkip;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class UFOSpawn : MonoBehaviour
         if (gotUFO == null)
         {
             Damage ufoH = new Damage(ufoHealth, ufoHealth);
-            Enemy.CreateUFO(new Vector3(_xStart, _yStart, 0), Quaternion.identity, speed, ufoH, moveRangeX);
+            Enemy.CreateUFO(new Vector3(_xStart, _yStart, 0), Quaternion.identity, speed, ufoH, moveRangeX, shootSkip);
         }
         else
         {
