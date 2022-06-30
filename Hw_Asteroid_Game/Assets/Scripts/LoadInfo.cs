@@ -8,8 +8,7 @@ public static class LoadInfo
 {    
     public static Info Load()
     {
-        TextAsset textAsset = (TextAsset)Resources.Load("Info");
-        Debug.Log(textAsset.text);
+        TextAsset textAsset = (TextAsset)Resources.Load("Info");        
         Info info = JsonUtility.FromJson<Info>(textAsset.text);
         return info;
     }

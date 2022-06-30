@@ -18,6 +18,12 @@ public static class BuilderExtentions
         return gameObject;
     }
 
+    public static GameObject SetTag(this GameObject gameObject, string tag)
+    {
+        gameObject.tag = tag;
+        return gameObject;
+    }
+
     public static GameObject AddRigidbody2D(this GameObject gameObject, float gravity)
     {
         var comp = gameObject.GetOrAddComponent<Rigidbody2D>();
@@ -42,6 +48,12 @@ public static class BuilderExtentions
     public static GameObject AddBulletScript(this GameObject gameObject)
     {
         gameObject.GetOrAddComponent<Bullet>();
+        return gameObject;
+    }
+
+    public static GameObject AddBulletUfoScript(this GameObject gameObject)
+    {
+        gameObject.GetOrAddComponent<UfoBullet>();
         return gameObject;
     }
 }

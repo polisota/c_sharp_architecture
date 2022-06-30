@@ -68,17 +68,19 @@ public class SpawnController : MonoBehaviour
         float speed = 0;
         float health = 0;
         Damage damage = new Damage(0, 0);
+
+        if (astType == 1)
+            asteroidType = AsteroidType.ASTL;
+        else if (astType == 2)
+            asteroidType = AsteroidType.ASTM;
+        else if (astType == 3)
+            asteroidType = AsteroidType.ASTS;
+        else if (astType == 4)
+            asteroidType = AsteroidType.ASTXS;
+
         //damage = new Damage(70, 70);
         if (_random)
         {
-            if (astType == 1)
-                asteroidType = AsteroidType.ASTL;
-            else if (astType == 2)
-                asteroidType = AsteroidType.ASTM;
-            else if (astType == 3)
-                asteroidType = AsteroidType.ASTS;
-            else if (astType == 4)
-                asteroidType = AsteroidType.ASTXS;
 
             speed = Random.Range(_speedRange, 3 * _speedRange);
             health = Random.Range(50, 80);            
@@ -104,8 +106,9 @@ public class SpawnController : MonoBehaviour
     }
 
     public bool ReturnAsteroidToPool(Asteroid ast)
-    {
+    {        
         return _poolEnemy.AddAsteroid(ast);
+        
     }
    
 }
